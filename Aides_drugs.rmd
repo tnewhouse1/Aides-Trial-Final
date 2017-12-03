@@ -1,6 +1,6 @@
 ---
 title: "Aides Tests"
-author: "Toulonne Newhouse""
+author: "Toulonne Newhouse"
 date: "December 6, 2017"
 output: html_document
 ---
