@@ -16,131 +16,124 @@ cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
 
 #Instructions
 
-Three new preventative aides drugs were tested in clinical trials in 2015. The trial designs were modeled after the famous RV_144 Aides Trials in Tailand in 2009.  The three different drugs were distributed in three different geographical locations, South Carolina, Central Africa, and Korea. 
+Three new preventative aides drugs were tested in clinical trials in 2015. The trial designs were modeled after the famous RV_144 Aides Trials in Thailand in 2009. The three aides drugs were distributed in three different geographical locations, South Carolina, Central Africa, and Korea.
 
-Our research question: Is the drug effective in each region? Is the drug sexp specifci?
+Our research question is: Is the drug effective in each region? Is the drug sex specific?
 
 ##Methods
-The data for the Aids Tests is enormous, having over 4000 observations, 3 variables, and includes the data from the clinical trials in 2015. To make the data easier to use, we must cut it down. We will be using r codes stored in a separate r file to help do this. We start with the Aids Tests data from 2015 and then use the select functions from the dplyr package to extract 3 variables that we must study regarding our research questions. We will only be using the dats from South Carolina, Central Africa, and Korea. We will still need to clean the data up a bit more. We will do this by the following: We will subset each variable by sex to see if the drug is sex specific.
+The data for the Aides Tests is large, having over 4000 observations, 3 variables, and includes the data from the clinical trials in 2015. To make the data easier to use, we must trim it down. We will be using r code stored in a separate .r file to help do this. We start with the Aides Tests data from 2015 and then use the select function from the dplyr package to extract 3 variables that we must study in regards to our research question, we will only be using the data from South Carolina, Central Africa, and Korea. We still need to clean the data up a bit more. This was done in the following way: * We will subset each variable by sex to see if the drug is sex specific.
+
+###RESULTS
+
+##Descriptive Results
 
 ##Graphical Results
-#South Carolina
 
+#South Carolina
 We will subset the data by sex to see if the drug is sex specific.
 
-##Both
+## South Carolina Aids Results
 ```{r}
 barchartGC(~infected + group, data=Scarolina, type = "percent", main="South Carolina Male&Female")
 ```
+There were more people that were infected with aids that had the placebo vaccine(more than 50%). Those that were not infected, 50% was given the drug and 50% was given the placebo.
 
-In viewing the graph, it shows that less people taking the actual drug were infected with aids than those taking the placebo drug, which was slightly higher for those that were infected with aids.
-
-##Male
+#South Carolina Aids Results (Males)
 ```{r}
 ScarolinaM <- filter(Scarolina,sex =="M")
 barchartGC(~infected + group, data=ScarolinaM, type="percent", main="South Carolina Male")
 ```
-In viewing the graph, it shows that more males taking the actual drug were infected with aids than those taking the placebo drug was slightly less males affected, approximately 10% difference.
+More males infected with aids received the actual drug. Just slightly more males that have not been infected with aids received the placebo drug.
 
-##Female
+# South Carolina Aids Resutls (Females)
 ```{r}
 ScarolinaF <- filter(Scarolina,sex=="F") 
 barchartGC(~infected + group, data=ScarolinaF, type="percent", main="South Carolina Female")
 ```
-In viewing the graph, it shows that less females taking the acutal drug were infected with aids and those taking the placebo indicates more females were infected with aids, approximately 17% difference.
+More females infected with aide received the placebo drug. Just slightly more females that were not infected with aids received the actual drug. 
 
-##Graphical Results
 #Central Africa
-
 We will subset the data by sex to see if the drug is sex specific.
 
-#Both
+#Central Africa Aids Results
 ```{r}
 barchartGC(~infected + group, data=cenAfrica, type = "percent", main="Central Africa Male&Female")
 ```
-More people infected with aids received the placebo drug. Half of the people that were not infected with aids received the actual drug and the other half received the placebo.
+There were more people that were infected with aids that had the placebo vacine (60%). Those that were not infected, 50% was given the drug and 50% was given the placebo.
 
-#Male
+#Central Africa Aids Results (Males)
 ```{r}
 cenAfricaM <- filter(cenAfrica,sex =="M")
 barchartGC(~infected + group, data=cenAfricaM, type="percent", main="Central Africa Male")
 ```
 More males infected with aids received the placebo drug. Half of the males that were not infected with aids received the actual drug and the other half received the placebo.
 
-#Female
+#Central Africa Aids Results (Females)
 ```{r}
 cenAfricaF <- filter(cenAfrica,sex =="F")
 barchartGC(~infected + group, data=cenAfricaF,type="percent", main="Central Africa Female")
 ```
-More females were infected with aids received the placebo. Just slightly more females that were not infected with aids received the actual drug.
+More males that were infected with aids received the placebo. Just slightly more males that were not infected with aids received the actual drug.
 
-##Graphical Results
-#Korea
 
+#Korea Aids Results
 We will subset the data by sex to see if the drug is sex specific.
 
-#Both
+#Korea Aids Results 
 ```{r}
 barchartGC(~infected + group, data=korea, type= "percent", main="Korea Male&Female")
 ```
-More people that were infected with aids that received the placebo drug than those that were not infected with aids that received the actual drug.
 
-#Male
+# Korea Aids Results (Males)
 ```{r}
 koreaM <- filter(korea,sex =="M")
 barchartGC(~infected + group, data=koreaM, type="percent", main="Korea Male")
 ```
 More males that were infected with aids received the placebo. Just slightly more males that were not infected with aids received the actual drug.
 
-#Female
+#Korea Aids Results (Females)
 ```{r}
 koreaF <- filter(korea,sex =="F")
 barchartGC(~infected + group, data=koreaF,type="percent", main="Korea Female")
 ```
 More females that were infected with aids received the actual drug. Just slightly more females that were not infected with aids received the placebo.
 
-##Graphical Conclusion
-
 Based on our graphical results, the relationship shown between the groups from the data is that the groups receiving the drug are not only sex specific, but also disease specific. You can see that sometimes there were more people that have not been infected with aids received either the actual drug or placebo. This was to see if the actual drug would be able to prevent aids completely.
 
 ##Numerical Results
 To view the results of our data numerically, we will use a two-way table with row percents using the rowPerc function from the tigerstats package. 
 
-#South Carolina
-
-#Both
+#South Carolina Two-way Table
 ```{r}
 Scarolina_table=xtabs(~infected + group, data=Scarolina)
 rowPerc(Scarolina_table)
 ```
-Less people (49.37%) that were infected with aids received the actual drug. More people (49.96%) that were not infected with aids received the placebo drug.
+50.63% of participants that have aids received the placebo drug. 50.04% that do not have aids received the drug.
 
-#Male
+
 ```{r}
 ScarolinaM_table=xtabs(~infected + group, data=ScarolinaM)
 rowPerc(ScarolinaM_table)
 ```
 More males (57.35%) that were infected with aids received the actual drug. More males (50.48%) that were not infected with aids received the placebo drug.
 
-#Female
+
 ```{r}
 ScarolinaF_table=xtabs(~infected + group, data=ScarolinaF)
 rowPerc(ScarolinaF_table)
 ```
 More females (61.17%) that were infected with aids received a placebo drug. More females (50.55%) that were not infected with aids received the actual drug in hopes to prevent it.
 
-
-##Numerical Results
 #Central Africa
 
-#Both
+#Central Africa Two-way Table
 ```{r}
 cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
 rowPerc(cenAfrica_table)
 ```
-More people (52.13%)that were infected with aids received the placebo drug. More people (50.10%) that were not infected aids received the actual drug.
+52% of those that have aids received the placebo. 50% that do not have aids received the drug.
 
-#Male
+
 ```{r}
 cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
 rowPerc(cenAfricaM_table)
@@ -154,17 +147,17 @@ rowPerc(cenAfricaF_table)
 ```
 More females (53.45%) that were infected with aids received the placebo drug. More females (50.17%) that were not infected with aids received the actual drug.
 
-##Numerical Results
+
 #Korea
 
-#Both
+#Korea Two-way Table
 ```{r}
 korea_table=xtabs(~infected + group, data=korea)
 rowPerc(korea_table)
 ```
-More males (55.98%) that were infected with aids received the placebo drug. More males (50.33%) that were not infected with aids received the actual drug.
+5% of those that have aids received the placebo. 50% of those that do not have aids received the drug.
 
-#Male
+
 ```{r}
 koreaM_table <- xtabs(~infected + group, data = koreaM)
 rowPerc(koreaM_table)
@@ -178,14 +171,23 @@ rowPerc(koreaF_table)
 ```
 More females (65.43%) that were infected with aids received the actual drug. More females (50.57%) that were not infected with aids received the placebo.
 
-#Numerical Conclusion
+# Discussion on Numerical Results
 
-In South Carolina and Central Africa, more females that were infected with aids received a placebo drug. But in Korea, more females with aids received the actual drug. In Central Africa and Korea, more males that were infected with aids received the placebo drug whereas more males in South Carolina received the actual drug. The drug may be sex specific, but it seems more like a geographical issue instead of a sex issue. We will perform a chisquare test to help determine our answer for our research question.
+Regarding each geographical location, more people that have have aids received the palcebo drug whereas more that did not have aids received the actual drug. In South Carolina and Central Africa, more females that were infected with aids received a placebo drug. But in Korea, more females with aids received the actual drug. In Central Africa and Korea, more males that were infected with aids received the placebo drug whereas more males in South Carolina received the actual drug. The drug may be sex specific, but it seems more like a geographical issue instead of a sex issue. We will perform a chisquare test to help determine our answer for our research question. #Inferential Results
 
-#Inferential Results
-#South Carolina
+Looking only at the graphical and numerical results alone is not enough to tell us if these results can explain if the aids drug is sex specific or not. To do this, we will need to run an inferential test. The one we will use is the chi-square test.
 
-#Both
+We will now need to run nine chisqtestGC function from the tigerstats package. We will run each test with the assumption that the aids drug is sex specific.
+
+<<<<<<< HEAD # South Carolina
+
+#South Carolina Inferential Results
+
+##As A Whole
+H0 The aids drug is not effective. (Independent)
+
+Ha The aids drug is effective.
+
 
 ```{r}
 Scarolina_table <- xtabs(~infected + group, data = Scarolina)
@@ -193,7 +195,12 @@ chisqtestGC(Scarolina_table)
 ```
 The p-value is 89%, we accept the null hypothesis. We can assume that the drug is not effective.
 
-#Male
+#MALES
+
+H0 The aids drug is not specific to males. (Independent)
+
+Ha The aids drug is specific to males
+
 ```{r}
 ScarolinaM <- filter(Scarolina, sex =="M")
 ScarolinaM_table=xtabs(~infected + group, data=ScarolinaM)
@@ -201,7 +208,12 @@ chisqtestGC(ScarolinaM_table)
 ```
 The P-value is 9%, greater than 5%, so we will accept the null hypothesis and assume that the drug is not specific to males.
 
-#Female
+#FEMALES
+
+H0 The aids drug is not specific to females. (Independent)
+
+Ha The aids drug is specific to females.
+
 ```{r}
 ScarolinaF <- filter(Scarolina, sex == "F")
 ScarolinaF_table=xtabs(~infected + group, data=ScarolinaF)
@@ -209,17 +221,27 @@ chisqtestGC(ScarolinaF_table)
 ```
 The P-value is 2% which is obviously less than 5%. Due to this we will reject the null hypothesis and assume that the aids drug is specific to females.
 
-##Inferential Results
-#Central Africa
 
-#Both
+#Central Africa Inferential Results
+
+#As A Whole
+
+H0 The aids drug is not effective. (Inependent)
+
+Ha The aids drug is effective.
+
 ```{r}
 cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
 chisqtestGC(cenAfrica_table)
 ```
 The P-value is 57%, accepting the null hypothesis that the drug in Central Africa is not effective
 
-#Male
+#MALES
+
+H0 The aids drug is not specific to males. (Independent)
+
+Ha The aids drug is specific to males.
+
 ```{r}
 cenAfricaM <- filter(cenAfrica,sex =="M")
 cenAfricaM_table=xtabs(~infected + group, data=cenAfrica)
@@ -227,7 +249,11 @@ chisqtestGC(cenAfricaM_table)
 ```
 The P-value is 1, we accept the null hypothesis and assume that the drug is independent and not specific to males.
 
-#Female
+#FEMALES
+
+H0 The aids drug is not specific to females. (Independent)
+
+Ha The aids drug is specific to females.
 ```{r}
 cenAfricaF <- filter(cenAfrica,sex =="F")
 cenAfricaF_table=xtabs(~infected + group, data=cenAfrica)
@@ -235,17 +261,25 @@ chisqtestGC(cenAfricaF_table)
 ```
 The P-value is 50%, we accept the null hypothesis and assume that the drug is not specific to females.
 
-##Inferential Results
-##Korea
+##korea Inferential Results
 
-#Both
+#As A Whole
+
+H0 The aids drug is not effective. (Inependent)
+
+Ha The aids drug is effective.
 ```{r}
 korea_table <- xtabs(~infected + group, data = korea)
 chisqtestGC(korea_table)
 ```
 The P-value is 69%, we will accept the null hypothesis and assume that the drug is independent and not effective.
 
-#Male
+#MALES
+
+H0 The aids drug is not specific to males. (Inependent)
+
+Ha The aids drug is specific to males.
+
 ```{r}
 koreaM <- filter(korea,sex =="M")
 koreaM_table=xtabs(~infected + group, data=koreaM)
@@ -253,7 +287,11 @@ chisqtestGC(koreaM_table)
 ```
 The P-value is zero, we reject the null hypothesis and assume that the drug is specific to males. 
 
-#Female
+#FEMALES
+
+H0 The aids drug is not specific to females. (Inependent)
+
+Ha The aids drug is specific to females.
 ```{r}
 koreaF <- filter(korea,sex =="F")
 koreaF_table=xtabs(~infected + group, data=koreaF)
@@ -261,6 +299,6 @@ chisqtestGC(koreaF_table)
 ```
 The P-value is 0 assuming that the drug is specific to females.
 
-##Inferential Conclusion
+##Conclusion
 
-Regarding each geographical location, more people that have have aids received the palcebo drug whereas more that did not have aids received the actual drug. In South Carolina and Central Africa, more females that were infected with aids received a placebo drug. But in Korea, more females with aids received the actual drug. In Central Africa and Korea, more males that were infected with aids received the placebo drug whereas more males in South Carolina received the actual drug. The drug may be sex specific, but it seems more like a geographical issue instead of a sex issue. We will perform a **chisquare** test to help determine our answer for our research question. 
+We made bar charts and numerical tables for each location specific to different drug. In the chisquare tests we learn that all three drugs are not effective in preventing aids. We do learn, however, that the drugs can be sex specific. In South Carolina, this drug is specific to females and that it may have had a positive influence on them. In Central Africa we learn that the drug is not specific to either sex and may have had a negative influence on both males and females. In Korea we learn that the drug is specific to males and females and may have had a positive influence on both groups.
