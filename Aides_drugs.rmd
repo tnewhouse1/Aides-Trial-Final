@@ -155,7 +155,7 @@ More females (53.45%) that were infected with aids received the placebo drug. Mo
 korea_table=xtabs(~infected + group, data=korea)
 rowPerc(korea_table)
 ```
-5% of those that have aids received the placebo. 50% of those that do not have aids received the drug.
+55% of those that have aids received the placebo. 50% of those that do not have aids received the drug.
 
 
 ```{r}
